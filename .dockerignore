@@ -1,0 +1,28 @@
+# Keep Docker build context small and reproducible
+
+# VCS
+.git
+
+# Python caches
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# IDE/editor
+.vscode
+.idea
+*.swp
+*.swo
+*.swn
+.*.swp
+*~
+
+# Local artifacts
+runs
+output
+dataset
+couplet
+
+# Misc
+*.log

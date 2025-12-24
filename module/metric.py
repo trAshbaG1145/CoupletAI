@@ -1,14 +1,17 @@
-from typing import List
+from typing import Sequence, Union
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 
 sf = SmoothingFunction()
 
 
-def calc_bleu(cand: List[int or str], ref: List[int or str]):
-    return sentence_bleu([ref], cand, smoothing_function=sf.method1)
+Token = Union[int, str]
 
 
-def calc_rouge_l(cand: List[int or str], ref: List[int or str], beta: float = 1.2):
+def calc_bleu(cand: Sequence[Token], ref: Sequence[Token]) -> float:
+    return float(sentence_bleu([list(ref)], list(cand), smoothing_function=sf.method1))
+
+
+def calc_rouge_l(cand: Sequence[Token], ref: Sequence[Token], beta: float = 1.2) -> float:
     len_cand = len(cand)
     len_ref = len(ref)
     lengths = [[0 for j in range(len_ref + 1)] for i in range(len_cand + 1)]

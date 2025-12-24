@@ -1,8 +1,8 @@
-FROM pytorch/pytorch:latest
+FROM pytorch/pytorch:2.2.2-cuda11.8-cudnn8-runtime
 
-RUN git clone https://github.com/WiseDoge/CoupletAI.git
-RUN pip install flask
-RUN apt-get update 
-RUN apt-get install wget
-RUN cd CoupletAI && wget https://github.com/wb14123/couplet-dataset/releases/download/1.0/couplet.tar.gz && tar -zxvf couplet.tar.gz && rm -rf couplet.tar.gz 
-WORKDIR /workspace/CoupletAI
+WORKDIR /app
+
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+COPY . /app

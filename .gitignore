@@ -105,6 +105,13 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
+# Editor swap/backup files
+*.swp
+*.swo
+*.swn
+.*.swp
+*~
+
 # mkdocs documentation
 /site
 
