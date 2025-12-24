@@ -17,7 +17,7 @@ def run():
     args = parser.parse_args()
     print("loading model...")
     device = torch.device("cuda" if torch.cuda.is_available() and args.cuda else "cpu")
-    model_info = torch.load(args.path)
+    model_info = torch.load(args.path, weights_only=False)
     tokenizer = model_info.get('tokenizer') or model_info.get('tokenzier')
     if tokenizer is None:
         raise KeyError("Checkpoint missing tokenizer (expected key 'tokenizer' or legacy 'tokenzier')")

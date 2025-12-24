@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 couplet
 output
+output_legacy
 # C extensions
 *.so
 .idea

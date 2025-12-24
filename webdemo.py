@@ -11,7 +11,7 @@ class Context(object):
         self.device = device
         self.max_input_len = max_input_len
         self.decode_options = decode_options
-        model_info = torch.load(path, map_location=device)
+        model_info = torch.load(path, map_location=device, weights_only=False)
         self.tokenizer = model_info.get('tokenizer') or model_info.get('tokenzier')
         if self.tokenizer is None:
             raise KeyError("Checkpoint missing tokenizer (expected key 'tokenizer' or legacy 'tokenzier')")

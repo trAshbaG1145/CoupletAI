@@ -46,7 +46,7 @@ class Tokenizer(object):
 
     @classmethod
     def from_pretrained(cls, filename: str or Path):
-        info_dict = torch.load(filename)
+        info_dict = torch.load(filename, weights_only=False)
         token_to_ix = info_dict['token_to_ix']
         ix_to_token = info_dict['ix_to_token']
         kls = cls()

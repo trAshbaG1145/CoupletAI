@@ -198,8 +198,8 @@ def run():
     logger.info(f"loading vocab...")
     tokenizer = Tokenizer.from_pretrained(fdir / 'vocab.pkl')
     logger.info(f"loading dataset...")
-    train_dataset = torch.load(fdir / 'train.pkl')
-    test_dataset = torch.load(fdir / 'test.pkl')
+    train_dataset = torch.load(fdir / 'train.pkl', weights_only=False)
+    test_dataset = torch.load(fdir / 'test.pkl', weights_only=False)
     if args.ddp:
         train_sampler = DistributedSampler(train_dataset, shuffle=True)
         test_sampler = DistributedSampler(test_dataset, shuffle=False)
@@ -239,7 +239,7 @@ def run():
     if args.resume is not None:
         if is_main_process:
             logger.info(f"resuming from checkpoint: {args.resume}")
-        ckpt = torch.load(args.resume, map_location=device)
+        ckpt = torch.load(args.resume, map_location=device, weights_only=False)
         model_to_load = unwrap_model(model)
         model_to_load.load_state_dict(ckpt['model'])
         if 'optimizer' in ckpt:
